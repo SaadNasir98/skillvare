@@ -6,9 +6,9 @@ namespace SkillVare_WebApi.Services
 
     public interface ICVService
     {
-        Task<bool> insertCVTemplate(CV_Template param);
-        Task<CV_Template> getCVTemplate(int Id);
-        Task<bool> updateCVTemplate(int Id, CV_Template param);
+        Task<bool> insertCVTemplate(CVTemplate param);
+        Task<CVTemplate> getCVTemplate(int Id);
+        Task<bool> updateCVTemplate(int Id, CVTemplate param);
         Task<bool> deleteCVTemplate(int Id);
     }
     public class CVService : ICVService
@@ -22,11 +22,11 @@ namespace SkillVare_WebApi.Services
 
 
 
-        public async Task<CV_Template> getCVTemplate(int Id)
+        public async Task<CVTemplate> getCVTemplate(int Id)
         {
             try
             {
-                var result =  _context.CV_Template.FirstOrDefault(a => a.Id == Id);
+                var result =  _context.CVTemplate.FirstOrDefault(a => a.Id == Id);
                 return result;
             }
             catch (Exception ex)
@@ -35,11 +35,11 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<bool> insertCVTemplate(CV_Template param)
+        public async Task<bool> insertCVTemplate(CVTemplate param)
         {
             try
             {
-                var insert = await _context.CV_Template.AddAsync(param);
+                var insert = await _context.CVTemplate.AddAsync(param);
 
                 if (param == null)
                 {
@@ -57,9 +57,9 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<bool> updateCVTemplate(int Id, CV_Template param)
+        public async Task<bool> updateCVTemplate(int Id, CVTemplate param)
         {
-            var existingItem = await _context.CV_Template.FindAsync(param.Id);
+            var existingItem = await _context.CVTemplate.FindAsync(param.Id);
 
             if (existingItem == null)
             {
@@ -78,14 +78,14 @@ namespace SkillVare_WebApi.Services
 
         public async Task<bool> deleteCVTemplate(int Id)
         {
-            var itemToDelete = await _context.CV_Template.FindAsync(Id);
+            var itemToDelete = await _context.CVTemplate.FindAsync(Id);
 
             if (itemToDelete == null)
             {
                 return false;
             }
 
-            _context.CV_Template.Remove(itemToDelete);
+            _context.CVTemplate.Remove(itemToDelete);
 
             try
             {

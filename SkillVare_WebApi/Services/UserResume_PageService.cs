@@ -3,32 +3,32 @@ using SkillVare_WebApi.Models;
 
 namespace SkillVare_WebApi.Services
 {
-    public interface IUserResume_Service
+    public interface IUserResume_PageService
     {
-        Task<bool> insertUserResume(User_Resume param);
-        Task<User_Resume> getUserResume(int Id);
-        Task<bool> updateUserResume(int Id, User_Resume param);
-        Task<bool> deleteUserResume(int Id);
+        Task<bool> insertUserResume_Page(User_Resume_Page param);
+        Task<User_Resume_Page> getUserResume_Page(int Id);
+        Task<bool> updateUserResume_Page(int Id, User_Resume_Page param);
+        Task<bool> deleteUserResume_Page(int Id);
     }
-
-    public class UserResume_Service : IUserResume_Service
+    public class UserResume_PageService : IUserResume_PageService
     {
         ApplicationDbContext _context;
-        public UserResume_Service(ApplicationDbContext _context) 
-        { 
+
+        public UserResume_PageService(ApplicationDbContext _context)
+        {
             this._context = _context;
         }
 
-        public async Task<bool> deleteUserResume(int Id)
+        public async Task<bool> deleteUserResume_Page(int Id)
         {
-            var itemToDelete = await _context.User_Resume.FindAsync(Id);
+            var itemToDelete = await _context.User_Resume_Page.FindAsync(Id);
 
             if (itemToDelete == null)
             {
                 return false;
             }
 
-            _context.User_Resume.Remove(itemToDelete);
+            _context.User_Resume_Page.Remove(itemToDelete);
 
             try
             {
@@ -41,11 +41,11 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<User_Resume> getUserResume(int Id)
+        public async Task<User_Resume_Page> getUserResume_Page(int Id)
         {
             try
             {
-                var result = _context.User_Resume.FirstOrDefault(a => a.Id == Id);
+                var result = _context.User_Resume_Page.FirstOrDefault(a => a.Id == Id);
                 return result;
             }
             catch (Exception ex)
@@ -54,11 +54,11 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<bool> insertUserResume(User_Resume param)
+        public async Task<bool> insertUserResume_Page(User_Resume_Page param)
         {
             try
             {
-                var insert = await _context.User_Resume.AddAsync(param);
+                var insert = await _context.User_Resume_Page.AddAsync(param);
 
                 if (param == null)
                 {
@@ -76,9 +76,9 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<bool> updateUserResume(int Id, User_Resume param)
+        public async Task<bool> updateUserResume_Page(int Id, User_Resume_Page param)
         {
-            var existingItem = await _context.User_Resume.FindAsync(param.Id);
+            var existingItem = await _context.User_Resume_Page.FindAsync(param.Id);
 
             if (existingItem == null)
             {

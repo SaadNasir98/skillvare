@@ -3,32 +3,33 @@ using SkillVare_WebApi.Models;
 
 namespace SkillVare_WebApi.Services
 {
-    public interface IUserResume_Service
-    {
-        Task<bool> insertUserResume(User_Resume param);
-        Task<User_Resume> getUserResume(int Id);
-        Task<bool> updateUserResume(int Id, User_Resume param);
-        Task<bool> deleteUserResume(int Id);
-    }
 
-    public class UserResume_Service : IUserResume_Service
+    public interface IUserSkill_Service
+    {
+        Task<bool> insertUserSkill(User_Skills param);
+        Task<User_Skills> getUserSkill(int Id);
+        Task<bool> updateUserSkill(int Id, User_Skills param);
+        Task<bool> deleteUserSkill(int Id);
+    }
+    public class UserSkill_Service : IUserSkill_Service
     {
         ApplicationDbContext _context;
-        public UserResume_Service(ApplicationDbContext _context) 
-        { 
-            this._context = _context;
+        public UserSkill_Service(ApplicationDbContext _context)
+        {
+            this._context  = _context;
+
         }
 
-        public async Task<bool> deleteUserResume(int Id)
+        public async Task<bool> deleteUserSkill(int Id)
         {
-            var itemToDelete = await _context.User_Resume.FindAsync(Id);
+            var itemToDelete = await _context.User_Skills.FindAsync(Id);
 
             if (itemToDelete == null)
             {
                 return false;
             }
 
-            _context.User_Resume.Remove(itemToDelete);
+            _context.User_Skills.Remove(itemToDelete);
 
             try
             {
@@ -41,11 +42,11 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<User_Resume> getUserResume(int Id)
+        public async Task<User_Skills> getUserSkill(int Id)
         {
             try
             {
-                var result = _context.User_Resume.FirstOrDefault(a => a.Id == Id);
+                var result = _context.User_Skills.FirstOrDefault(a => a.Id == Id);
                 return result;
             }
             catch (Exception ex)
@@ -54,11 +55,11 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<bool> insertUserResume(User_Resume param)
+        public async Task<bool> insertUserSkill(User_Skills param)
         {
             try
             {
-                var insert = await _context.User_Resume.AddAsync(param);
+                var insert = await _context.User_Skills.AddAsync(param);
 
                 if (param == null)
                 {
@@ -76,9 +77,9 @@ namespace SkillVare_WebApi.Services
             }
         }
 
-        public async Task<bool> updateUserResume(int Id, User_Resume param)
+        public async Task<bool> updateUserSkill(int Id, User_Skills param)
         {
-            var existingItem = await _context.User_Resume.FindAsync(param.Id);
+            var existingItem = await _context.User_Skills.FindAsync(param.Id);
 
             if (existingItem == null)
             {
@@ -95,4 +96,6 @@ namespace SkillVare_WebApi.Services
             }
         }
     }
+
+    
 }
