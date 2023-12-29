@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hO5Ks/YrCVBjmmjzB6PRD7C5XnHg9lcDKqTqGx4KUoA=",
+  "Source": "SkillVare_WebApi",
+  "BasePath": "_content/SkillVare_WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
